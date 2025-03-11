@@ -1,0 +1,19 @@
+import { Request, Response } from "express";
+import { CreateProductService } from "../../services/product/CreateProductService";
+
+const productService = new CreateProductService()
+
+class CreateProductController {
+    async handle(req: Request, res: Response){
+        const { name, price, description, category_id } = req.body
+
+        let banner = ""
+
+        const product = await productService.execute( {name, price, description, banner, category_id} )
+
+        return res.status(201).json(product)
+    }
+}
+
+export { CreateProductController }
+
