@@ -7,6 +7,7 @@ import { AuthMiddleware } from "./middlewares/AuthMiddleware";
 import { CreateCategoryController } from "./controllers/category/CreateCategoryController";
 import { ListCategoryController } from "./controllers/category/ListCategoryController";
 import { CreateProductController } from "./controllers/product/CreateProductController";
+import { ListByCategoryController } from "./controllers/product/ListByCategoryController";
 
 import uploadConfig from './config/multer'
 
@@ -25,6 +26,7 @@ router.post('/category', AuthMiddleware, new CreateCategoryController().handle)
 router.get('/category', AuthMiddleware, new ListCategoryController().handle)
 
 // ROTAS DE PRODUTOS
-router.post('/products', AuthMiddleware, upload.single('file'), new CreateProductController().handle)
+router.post('/product', AuthMiddleware, upload.single('file'), new CreateProductController().handle)
+router.get('/category/product', AuthMiddleware, new ListByCategoryController().handle)
 
 export { router };
