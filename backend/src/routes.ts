@@ -12,6 +12,10 @@ import { CreateOrderController } from "./controllers/order/CreateOrderController
 import { RemoveOrderController } from "./controllers/order/RemoveOrderController";
 import { ItemController } from "./controllers/item/ItemController";
 import { RemoveItemController } from "./controllers/item/RemoveItemController";
+import { SendOrderController } from "./controllers/order/SendOrderController";
+import { ListOrdersController } from "./controllers/order/ListOrdersController";
+import { DetailOrderController } from "./controllers/order/DetailOrderController";
+import { FinishOrderController } from "./controllers/order/FinishOrderController";
 
 import uploadConfig from './config/multer'
 
@@ -40,5 +44,17 @@ router.delete('/order', AuthMiddleware, new RemoveOrderController().handle)
 // Rotas de adicionar e deletar ITENS a mesa
 router.post('/order/add', AuthMiddleware, new ItemController().handle)
 router.delete('/order/remove', AuthMiddleware, new RemoveItemController().handle)
+
+// ROTA PARA ALTERAR PEDIDO DE RASCUNHO PARA FALSE 
+router.put('/order/send', AuthMiddleware, new SendOrderController().handle)
+
+//ROTA PARA CAPTURAR TODAS AS ORDENS COM DRAFT FALSE E STATUS FALSE (JA FOI ENVIADA PARA A COZINHA POREM A AINDA NAO ESTA PRONTO)
+router.get('/orders', AuthMiddleware, new ListOrdersController().handle)
+
+//ROTA DETALHES DO PEDIDO DE TAL MESA
+router.get('/orders/detail', AuthMiddleware, new DetailOrderController().handle)
+
+//ROTA PARA FINALIZAR O PEDIDO COLOCANDO STATUS PARA TRUE
+router.put('/order/finish', AuthMiddleware, new FinishOrderController().handle)
 
 export { router };
