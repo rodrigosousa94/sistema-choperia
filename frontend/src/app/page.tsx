@@ -33,7 +33,7 @@ export default function Page(){
 
       cookieStore.set("session", response.data.token, {
         maxAge: expressTime,
-        path: "/",
+        path: "/",  // significa que o cookie estará disponível em todo o site, ou seja, ele será acessível em todas as URLs dentro do domínio.
         httpOnly: false,
         secure: process.env.NODE_ENV === "production"
       })
