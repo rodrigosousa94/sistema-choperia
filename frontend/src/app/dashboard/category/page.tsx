@@ -4,6 +4,7 @@ import { api } from '@/services/api'
 import { getCookieServer } from '@/lib/cookieServer'
 import { redirect } from 'next/navigation'
 
+
 export default function Category(){
 
     async function handleRegisterCategory(formData: FormData){
@@ -25,13 +26,13 @@ export default function Category(){
                 }
             })
             
-
+            
         } catch (error) {
             console.log(error)
             return
         }
-
-        redirect("/dashboard")
+        
+        redirect("/")
     }
 
     return(
